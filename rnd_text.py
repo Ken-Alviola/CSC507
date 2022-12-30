@@ -6,7 +6,7 @@ def file2_write():
     count = 0
     file = open("file2.txt", "w")
     
-    while count <= 999:
+    while count <= 999999:
         file.write(str(random.randint(0,1_000_000)))
         print("",file=file)
         count += 1
