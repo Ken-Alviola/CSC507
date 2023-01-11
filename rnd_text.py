@@ -1,9 +1,10 @@
 import random
 import time
 import datetime
+import pandas as pd
 
 def file2_write():
-    "creates/opens file2.txt and writes 1000 integers on a new line"
+    "CSC507 Milestone 2. creates/opens file2.txt and writes 1000 integers on a new line"
     
     count = 0
     file = open("file2.txt", "w")
@@ -16,7 +17,6 @@ def file2_write():
     file.close()
 
 def timed_file2_write():
-    '''Prints start and end times as well as execution time'''
     
     current_time = datetime.datetime.now()
     print(f'Start time: {current_time}')
