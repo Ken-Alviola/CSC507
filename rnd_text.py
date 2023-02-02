@@ -108,3 +108,30 @@ def split_newfile1():
     current_time = datetime.datetime.now()
     print(f'End time: {current_time}')
     print("--- %s seconds execution time ---" % round((time.time()- start_time),3))
+    
+def file2_write_10M():
+    "CSC507 CT6. creates/opens file2.txt and writes 10000000 integers on a new line"
+    
+    count = 0
+    file = open("file2_10M.txt", "w")
+    
+    while count <= 9999999:
+        file.write(str(random.randint(0,10_000_000)))
+        print("",file=file)
+        count += 1
+        
+    file.close()
+
+def timed_file2_write_10M():
+    '''CSC507 CT6. Prints start and end times as well as execution time'''
+    
+    current_time = datetime.datetime.now()
+    print(f'Start time: {current_time}')
+    
+    start_time = time.time()
+    
+    file2_write_10M()
+    
+    current_time = datetime.datetime.now()
+    print(f'End time: {current_time}')
+    print("--- %s seconds execution time ---" % round((time.time()- start_time),3))
