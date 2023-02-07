@@ -1,12 +1,14 @@
 #!/bin/bash
 
+rm hugefile1.txt
+rm hugefile2.txt
+
 SECONDS=0
 
 echo -n 'Start time: ' 
 date
 
-rm hugefile1.txt
-rm hugefile2.txt
+
 
 for ((i=0; i<=999; i++))
 do
