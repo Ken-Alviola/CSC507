@@ -42,4 +42,4 @@ if __name__ == "__main__":
  
     finish_time = time.perf_counter()
  
-    print(f"Program finished in {finish_time-start_time} seconds")
+    print(f"Program finished in {round(finish_time-start_time,3)} seconds")
