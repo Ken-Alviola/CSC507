@@ -2,6 +2,22 @@ import multiprocessing
 import time
 import os
 
+def split_1B(file,num_files):
+    '''for use in splitting hugefile1 and 2 into x number of files'''
+    
+    lines_per_file = int(1_000_000_000 / num_files)
+    smallfile = None
+    with open(file) as bigfile:
+        for lineno, line in enumerate(bigfile):
+            if lineno % lines_per_file == 0:
+                if smallfile:
+                    smallfile.close()
+                small_filename = 'small_file_{}.txt'.format(lineno + lines_per_file)
+                smallfile = open(small_filename, "w")
+            smallfile.write(line)
+        if smallfile:
+            smallfile.close()
+            
 def total(file1,file2):
     '''CSC507 Mod8. Opens 2 text files, reads line by line, adds each corresponding
     line, and outputs to totalfile.txt'''
