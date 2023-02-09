@@ -26,20 +26,24 @@ if __name__ == "__main__":
     
     start_time = time.perf_counter()
 
-    # Creates x number of processes
-    p1 = multiprocessing.Process(target=total("hugefile1_500M-1.txt","hugefile2_500M-1.txt"))
-    p2 = multiprocessing.Process(target=total("hugefile1_500M-2.txt","hugefile2_500M-2.txt"))
+    #sets pool to current cpu count (10)
+    pool = multiprocessing.Pool(multiprocessing.cpu_count())
     
-    process_list = [p1,p2]
+    #runs total() function in parallel for 10 sets of input files
+    pool.starmap(func=total, iterable=[("hugefile1_100M-1.txt","hugefile2_100M-1.txt"),
+                                      ("hugefile1_100M-2.txt","hugefile2_100M-2.txt"),
+                                      ("hugefile1_100M-3.txt","hugefile2_100M-3.txt"),
+                                      ("hugefile1_100M-4.txt","hugefile2_100M-4.txt"),
+                                      ("hugefile1_100M-5.txt","hugefile2_100M-5.txt"),
+                                      ("hugefile1_100M-6.txt","hugefile2_100M-6.txt"),
+                                      ("hugefile1_100M-7.txt","hugefile2_100M-7.txt"),
+                                      ("hugefile1_100M-8.txt","hugefile2_100M-8.txt"),
+                                      ("hugefile1_100M-9.txt","hugefile2_100M-9.txt"),
+                                      ("hugefile1_100M-10.txt","hugefile2_100M-10.txt")])
     
-    # Starts all processes
-    for p in process_list:
-        p.start()
-        
-    # Forces all processes to finish before finish timer executes
-    for p in process_list:
-        p.join()
- 
+    #releases resources
+    pool.close()
+    
     finish_time = time.perf_counter()
  
     print(f"Program finished in {round(finish_time-start_time,3)} seconds")
